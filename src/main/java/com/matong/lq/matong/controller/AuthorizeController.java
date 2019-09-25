@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -39,7 +39,7 @@ public class AuthorizeController {
     private String redirect_uri;
 
     @RequestMapping("/callback")
-    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state, HttpServletRequest request){
+    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state,  HttpServletResponse response){
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(client_id);
         accessTokenDTO.setClient_secret(client_secret);
@@ -51,11 +51,13 @@ public class AuthorizeController {
         if(user!=null){
             gu.setId(user.getId());
             gu.setName(user.getName());
+            gu.setAvatar_url(user.getAvatar_url());
             Date date=new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String time = dateFormat.format( date );
-            us.insert(String.valueOf(gu.getId()),user.getName(), UUID.randomUUID().toString(),time,null);
-            request.getSession().setAttribute("user",user);
+            String token = UUID.randomUUID().toString();
+            us.insert(String.valueOf(user.getId()),user.getName(), token,time,time,user.getAvatar_url());
+            response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else{
             return "index";

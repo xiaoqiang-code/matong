@@ -19,6 +19,15 @@ public class User {
     private String token;
     private String gmt_create;
     private String gmt_modified;
+    private String pic_url;
+
+    public String getPic_url() {
+        return pic_url;
+    }
+
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
+    }
 
     public int getId() {
         return id;

@@ -1,0 +1,41 @@
+.main{
+    margin-top: 60px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color:white;
+}
+.body-background{
+    background-color: #B3D9D9;
+}
+.btn-success{
+    width: 100px;
+    float: right;
+    margin-bottom: 15px;
+}
+
+.unlogin-fabu{
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 60px;
+}
+.login{
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 60px;
+}
+.media-object{
+    width: 38px;
+    height: 38px;
+}
+.fu-title{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+body{
+    font-family: candara,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif, -apple-system;;
+}
+a:hover{
+    cursor:pointer;
+}
+
