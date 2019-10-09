@@ -27,13 +27,30 @@ public class UserServiceImpl implements UserService {
         user.setToken(token);
         user.setGmt_create(gmt_create);
         user.setGmt_modified(gmt_modified);
-        user.setGmt_modified(gmt_modified);
         user.setPic_url(pic_url);
         userMapper.insert(user);
     }
     @Override
     public User selectUser(String token) {
         User user = userMapper.selectUser(token);
+        return user;
+    }
+
+    @Override
+    public void userRegister(String account_id, String name, String gmt_create, String gmt_modified, String pic_url, String password) {
+        User user=new User();
+        user.setAccount_id(account_id);
+        user.setName(name);
+        user.setGmt_create(gmt_create);
+        user.setGmt_modified(gmt_modified);
+        user.setPic_url(pic_url);
+        user.setPassword(password);
+        userMapper.userRegister(user);
+    }
+
+    @Override
+    public User userLogin(String name) {
+        User user = userMapper.userLogin(name);
         return user;
     }
 }

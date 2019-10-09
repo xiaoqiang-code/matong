@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface QuestionDTOService {
     public List<QuestionDTO> selectQuestionDTOList();
+    public List<QuestionDTO> selectQuestionDTOListByUserId(int id);
+    public QuestionDTO selectUserQuestionDetile(int id,String name);
 }

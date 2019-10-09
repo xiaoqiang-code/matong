@@ -6,6 +6,14 @@
 }
 .body-background{
     background-color: #B3D9D9;
+    /*background-image: url('/login/images/bg-01.jpg');*/
+    /*background-repeat: no-repeat;*/
+}
+.container-fluid{
+    margin-left: 230px;
+}
+.navbar-right{
+    margin-right: 200px;
 }
 .btn-success{
     width: 100px;
@@ -38,4 +46,22 @@ body{
 a:hover{
     cursor:pointer;
 }
-
+/*我的发布*/
+.myclass{
+    height: 40px;
+}
+.myclass:hover{
+    background-color: #5bc0de;
+    color: white;
+}
+.myclass a{
+    font-size: medium;
+    line-height: 2.4;
+    margin-left: 87px;
+    text-decoration-line: none;
+}
+.redact{
+    font-size: 13px;
+    color: #999;
+    text-decoration-line: none;
+}

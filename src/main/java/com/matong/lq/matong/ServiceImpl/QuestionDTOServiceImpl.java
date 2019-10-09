@@ -27,4 +27,16 @@ public class QuestionDTOServiceImpl implements QuestionDTOService {
         List<QuestionDTO> questionDTOS = qdtom.selectQuestionDTOList();
         return questionDTOS;
     }
+
+    @Override
+    public List<QuestionDTO> selectQuestionDTOListByUserId(int id) {
+        List<QuestionDTO> questions = qdtom.selectQuestionDTOListByUserId(id);
+        return questions;
+    }
+
+    @Override
+    public QuestionDTO selectUserQuestionDetile(int id,String name) {
+        QuestionDTO questionDTO = qdtom.selectUserQuestionDetile(id,name);
+        return questionDTO;
+    }
 }

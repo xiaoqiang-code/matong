@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/images/fav.ico">
+    <link rel="stylesheet" href="/css/bootstrap-theme.css" charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="/css/matong.css" charset="UTF-8">
+    <script src="/js/jquery-3.3.1.min.js" charset="UTF-8"></script>
+    <script src="/js/bootstrap.min.js" charset="UTF-8"></script>
+    <script src="/js/matong.js" charset="UTF-8"></script>
+    <title th:text="${sectionName}"></title>
+</head>
+<body class="body-background" style="height: 1800px;">
+<!--引入头部导航模块-->
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main">
+    <div class="row" style="height: 1600px; ">
+        <div name="list" class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h3></span>&nbsp;[[${sectionName}]]</h3>
+            <hr>
+            <div class="media" style="line-height: 20px; border-bottom: #f4f4f4 solid 1px;" th:each=" message : ${pageInfo.list}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-thumbnail" th:src="@{${message.pic_url}}">
+                    </a>
+                </div>
+                <div class="media-body" style="padding-bottom: 13px;">
+                    <input type="hidden" th:value="${message.id}">
+                    <a th:href="@{'/userQuestionDetile?questionName='+${message.name}+'&questionId='+${message.id}}" style="text-decoration:none;font-size: 18px;" th:text="${message.title}"></a><br>
+                    <span class="fu-title">分类 • </span>
+                    <span class="fu-title" th:text="${message.comment_count}"></span><span class="fu-title" >人回复 • </span><span class="fu-title" th:text="${message.view_count}"></span><span class="fu-title" >次浏览 • </span><span class="fu-title" th:text="${message.gmt_create}"></span>
+                </div>
+            </div>
+            <div style="float: right;">
+                <ul class="pagination">
+                    <li class="page-item" th:if="${pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=1)}">首页</a></li>
+                    <li class="page-item" th:if="${pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:${pageInfo.pages})}">上一页</a></li>
+                    <li class="page-item"><a class="page-link"><span th:text="第+${pageInfo.pageNum}+页"></span></a></li>
+                    <li class="page-item"><a class="page-link"><span th:text="共+${pageInfo.pages}+页"></span></a></li>
+                    <li class="page-item" th:if="${pageInfo.pageNum != pageInfo.pages}"><a class="page-link" th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a></li>
+                    <li class="page-item" th:if="${pageInfo.pageNum != pageInfo.pages}"><a class="page-link" th:href="@{/(pageNum=${pageInfo.pages})}">尾页</a></li>
+                </ul>
+            </div>
+        </div>
+        <div name="huati" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div style="width: 288px;">
+                <div class="myclass">
+
+                    <a href="/profile/question"  th:class="${section=='questions'} ? 'active' : ''"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;我的发布</a>
+                </div>
+                <div class="myclass">
+                    <a href="/profile/replay"  th:class="${section=='replay'} ? 'active ' : ''">
+                        <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;最新回复
+                        <span class="badge">14</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>
+

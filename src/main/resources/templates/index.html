@@ -12,45 +12,8 @@
     <title>码瞳社区</title>
 </head>
 <body class="body-background" style="height: 1800px;">
-<nav class="navbar navbar-default">
-    <div class="container-fluid" style="margin-left: 230px;">
-        <div class="navbar-header">
-<!--            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-<!--                <span class="sr-only">码瞳社区</span>-->
-<!--            </button>-->
-                <a href="/"><img src="images/logofont.png"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索问题。。。">
-                </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 200px;">
-                <li th:if="${session.user == null}">
-<!--                    <a id="unlogin" href="javascript()"></a>-->
-                    <button id="unlogin-fabu" type="button" class="btn btn-info unlogin-fabu">发布</button>
-                </li>
-                <li th:if="${session.user == null}">
-                    <button id="login" type="button" class="btn btn-primary login">登录</button>
-<!--                    <a href="https://github.com/login/oauth/authorize?client_id=d2df38480a2f3f08e6db&redirect_uri=http://localhost:8097/callback&scope=user&state=1">登录</a>-->
-                </li>
-                <li th:if="${session.user != null}">
-                    <button id="login-fabu" type="button" class="btn btn-info unlogin-fabu">发布</button>
-                </li>
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">[[${session.user.getName()}]]<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">消息中心</a></li>
-                        <li><a href="#">个人资料</a></li>
-                        <li><a href="#">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!--引入头部导航模块-->
+<div th:insert="~{navigation::nav}"></div>
 <div class="container-fluid main">
     <div class="row" style="height: 1600px; ">
         <div name="list" class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -70,7 +33,6 @@
             </div>
             <div style="float: right;">
             <ul class="pagination">
-
                 <li class="page-item" th:if="${pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=1)}">首页</a></li>
                 <li class="page-item" th:if="${pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:${pageInfo.pages})}">上一页</a></li>
                 <li class="page-item"><a class="page-link"><span th:text="第+${pageInfo.pageNum}+页"></span></a></li>

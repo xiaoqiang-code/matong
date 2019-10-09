@@ -4,23 +4,27 @@ $(function(){
     release()
     submit()
 })
-
+//未登录状态下点击发布按钮
 function unlogin() {
     $("#unlogin-fabu").click(function () {
         alert("请先登录后再发布问题！");
         return;
     });
 }
+//点击登录按钮
 function login() {
     $("#login").click(function () {
-        window.location.href="https://github.com/login/oauth/authorize?client_id=d2df38480a2f3f08e6db&redirect_uri=http://localhost:8097/callback&scope=user&state=1";
+        // window.location.href="https://github.com/login/oauth/authorize?client_id=d2df38480a2f3f08e6db&redirect_uri=http://localhost:8097/callback&scope=user&state=1";
+        window.location.href="http://localhost:8097/login";
     });
 }
+//发布页登录
 function release(){
     $("#login-fabu").click(function () {
-        window.location.href="http://localhost:8097/publish";
+        window.location.href="http://localhost:8097/publishs";
     });
 }
+//发布问题
 function submit() {
     $("#submit_tj").click(function () {
         var title = $("#title").val();
@@ -42,3 +46,4 @@ function submit() {
         alert("发布成功！");
     });
 }
+

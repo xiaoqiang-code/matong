@@ -29,34 +29,24 @@ public class PublishController {
 
     @Autowired
     private UserService us;
-
-    @GetMapping("/publish")
-    public String publish(){
+    //打开发布页
+    @RequestMapping("/publishs")
+    public String publishUrl(){
         return "publish";
     }
+
     @PostMapping("/publish")
     public String doPublish(@RequestParam(value = "title") String title, @RequestParam(value = "description") String description, @RequestParam(value = "tag") String tag, Model model){
         Date date=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = dateFormat.format( date );
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies==null){
-            return "index";
-        }
-        for (Cookie cookie:cookies){
-            if ("token".equals(cookie.getName())){
-                String token = cookie.getValue();
-                user = us.selectUser(token);
-                if (user==null){
-                    model.addAttribute("inf","用户未登录");
-                    return "publish";
-                }else{
-                    qs.insertQuestion(title,description,time,time,user.getId(),tag);
-                    model.addAttribute("inf","发布成功！");
-                }
 
-            }
+        User user =(User) request.getSession().getAttribute("user");
+        if(user!=null) {
+            qs.insertQuestion(title,description,time,time,Integer.parseInt(user.getAccount_id()),tag);
+        }else {
+            model.addAttribute("inf","用户未登录");
+            return "publish";
         }
         return "publish";
     }
